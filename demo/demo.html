@@ -1,0 +1,74 @@
+<html>
+
+<head>
+  <title>Flashcam - demo</title>
+
+  <script>
+    var camera, canvas, context, imageData, pixels;
+
+    function cameraUnmuted(){
+      camera = document.getElementById("flashcam");
+      canvas = document.getElementById("canvas");
+      context = canvas.getContext("2d");
+      imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      pixels = [];
+
+      camera.style.visibility = "hidden";
+      canvas.style.display = "block";
+
+      setTimeout(tick, 1);
+    }
+
+    function tick(){
+      snapshot();
+
+      setTimeout(tick, 1);
+    }
+
+    function snapshot(){
+      var image = imageData.data,
+          i = 0, j = 0, pixel = 0, len;
+
+      pixels = camera.snapshot().split(",");
+
+      len = pixels.length - 1;
+      while(len --){
+        pixel += parseInt( pixels[j ++], 36);
+
+        image[i ++] = pixel >> 16;
+        image[i ++] = (pixel >> 8) & 0xff;
+        image[i ++] = pixel & 0xff;
+        image[i ++] = 255;
+      }
+
+      context.putImageData(imageData, 0, 0);
+    }
+          
+ </script>
+
+</head>
+
+<body>
+
+  <center>
+    <canvas id="canvas" width="320px" height="240px" style="display:none"></canvas>
+    <object id="flash"
+            width="320" height="240"
+            classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+            codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=10,0,0,0">
+      <param name="movie" value="flashcam.swf"/>
+      <param name="quality" value="high"/>
+      <param name="allowScriptAccess" value="always"/>
+      <embed id="flashcam"
+             src="flashcam.swf"
+             width="320" height="240"
+             quality="high" 
+             allowScriptAccess="always" 
+             type="application/x-shockwave-flash"
+             pluginspage="http://www.macromedia.com/go/getflashplayer"/>
+    </object>
+  </center>
+
+</body>
+  
+</html>
