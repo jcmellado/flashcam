@@ -30,7 +30,7 @@ package
   import flash.media.Camera;
   import flash.media.Video;
 
-  [SWF(width = "320", height = "230", backgroundColor = "#ff0000")]
+  [SWF(width = "320", height = "240", backgroundColor = "#ff0000")]
   
   public class Flashcam extends Sprite 
   {
