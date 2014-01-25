@@ -2,7 +2,7 @@ Capture video on Flash so you can use it from JavaScript using ExternalInterface
 
 ### Demo ###
 
-Try the [live demo](http://www.inmensia.com/files/flashcam/demo/demo.html")!
+Try the [live demo](http://www.inmensia.com/files/flashcam/demo/demo.html)!
 
 ### How to use it? ###
 
